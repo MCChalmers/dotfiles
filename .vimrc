@@ -12,19 +12,20 @@ set smartindent
 set expandtab
 
 "UI config
-set number
-set showcmd
-set cursorline
-filetype plugin indent on
-set wildmenu
-set showmatch
-set guioptions-=m "Remove menu bar
-set guioptions-=T "Remove toolbar
-set guioptions-=r "Remove right-hand scrollbar
-set guioptions-=L "Remove left-hand scrollbar
-set showmode "Show current mode
-set showcmd "Show current command while being typed
-set title "Show title of file in window titlebar  
+set ruler                       "Show cursor coordinates in status bar
+set number                      "Show line numbers 
+set showcmd                     "Show current command
+set cursorline                  "Highlight the current line
+filetype plugin indent on       "Use indent settings by filetype
+set wildmenu                    "Use wildmenu autocompletion
+set showmatch                   "Show matching brackets/braces 
+set guioptions-=m               "Remove menu bar
+set guioptions-=T               "Remove toolbar
+set guioptions-=r               "Remove right-hand scrollbar
+set guioptions-=L               "Remove left-hand scrollbar
+set showmode                    "Show current mode
+set showcmd                     "Show current command while being typed
+set title                       "Show title of file in window titlebar  
 
 "Set up toggling between numbers and relative numbers
 function! NumberToggle()
@@ -40,9 +41,9 @@ nnoremap <C-n> :call NumberToggle()<CR>
 let mapleader=","
 
 "Searching
-set incsearch
-set hlsearch
-nnoremap <Leader><space> :nohlsearch<CR>
+set incsearch                   "Use incremental search
+set hlsearch                    "Highlight search terms
+nnoremap <Leader><Space> :nohlsearch<CR>
 
 "Folding
 set foldenable
