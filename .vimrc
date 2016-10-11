@@ -1,15 +1,26 @@
+execute pathogen#infect()
+
+set nocompatible                "Don't maintain compatibility with vi
+
+"Moving
+let mapleader=","
+
 "Colours
 colorscheme monokai
-
-syntax enable
+let python_highlight_all=1
+syntax on
 
 "Spaces & tabs
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
+set textwidth=79
 set autoindent
 set smartindent
 set expandtab
+
+"File encoding
+set encoding=utf-8
 
 "UI config
 set ruler                       "Show cursor coordinates in status bar
@@ -26,6 +37,20 @@ set guioptions-=L               "Remove left-hand scrollbar
 set showmode                    "Show current mode
 set showcmd                     "Show current command while being typed
 set title                       "Show title of file in window titlebar  
+set colorcolumn=80              "Show 80-char margin
+set splitright                  "Add new buffers to the right
+
+"Platform-specific font
+if has("gui_running")
+  if has("gui_gtk2")
+    set guifont=Inconsolata\ 12
+  elseif has("gui_macvim")
+    set guifont=Menlo\ Regular:h14
+  elseif has("gui_win32")
+    set guifont=Consolas:h11:cANSI
+  endif
+endif
+"set guifont=Consolas:h10:cANSI:qDRAFT
 
 "Set up toggling between numbers and relative numbers
 function! NumberToggle()
@@ -37,16 +62,35 @@ function! NumberToggle()
 endfunc
 nnoremap <C-n> :call NumberToggle()<CR>
 
-"Moving
-let mapleader=","
 
 "Searching
 set incsearch                   "Use incremental search
 set hlsearch                    "Highlight search terms
-nnoremap <Leader><Space> :nohlsearch<CR>
+nnoremap <leader><Space> :nohlsearch<CR>
 
 "Folding
 set foldenable
 set foldlevelstart=10
 nnoremap <space> za
 set foldmethod=indent
+
+"Custom bindings
+map <Enter> o<ESC>
+map <S-Enter> O<ESC>
+
+"Use Pydiction
+let g:pydiction_location = 'C:\Users\mchalmers\vimfiles\bundle\pydiction\complete-dict'
+let g:pydiction_menu_height = 3
+
+"Syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_mode_map = {"mode": "passive"}
+let g:syntastic_check_on_open = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_w = 0
+let g:syntastic_check_on_wq = 0
+let g:pymode_lint_on_write = 0
